@@ -1,31 +1,22 @@
 import express from 'express';
 import mongoose from 'mongoose'; 
-import logger from 'morgan';
-import swaggerUi from 'swagger-ui-express';
-import cors from 'cors';
 import { restRouter } from './api';
+import { devConfig } from './config/env/development';
+import { setGlobalMiddleware } from './api/middlewares/global-middleware';
+
 
 
 mongoose.Promise = global.Promise;
-mongoose.connect('mongodb://localhost/invoice-builder');
+mongoose.set('useCreateIndex', true);
+mongoose.connect(`mongodb://localhost/${devConfig.database}`, { useNewUrlParser: true });
 const app =  express();
-const PORT = 3001;
-app.use(express.json());
-app.use(express.urlencoded({extended:true}));
-app.use(cors())
-app.use(logger('dev', {
-    skip: function (req, res) { return res.statusCode == 404 }
-  }));
+const PORT = devConfig.port;
+//register global middleware
+setGlobalMiddleware(app);
 app.use('/api', restRouter);
 //middleware
 const swaggerDocument = require('./config/swagger.json');
-app.use(
-    '/api-docs',
-    swaggerUi.serve,
-    swaggerUi.setup(swaggerDocument, {
-      explorer: true,
-    })
-  );
+
 app.use((req,res,next)=>{
     const error = new Error('Not Found');
     error.message = 'Invalid Route';
