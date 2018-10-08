@@ -1,0 +1,67 @@
+<h1 mat-dialog-title class="primary-color">Add New Item</h1>
+<mat-dialog-content class="accent-color">
+    <div>
+        <mat-radio-group class="example-radio-group" [(ngModel)]="selectedItemType" (change)="radioOnChange(selectedItemType)">
+            <mat-radio-button class="example-radio-button" [value]="1">
+                Album
+            </mat-radio-button>
+            <mat-radio-button class="example-radio-button" [value]="2">
+                Artist
+            </mat-radio-button>
+
+            <mat-radio-button class="example-radio-button" [value]="3">
+                Playlist
+            </mat-radio-button>
+            <mat-radio-button class="example-radio-button" [value]="4">
+                Genre
+            </mat-radio-button>
+            <mat-radio-button class="example-radio-button" [value]="5">
+                Track
+            </mat-radio-button>
+            <mat-radio-button class="example-radio-button" [value]="6">
+                Radio
+            </mat-radio-button>
+        </mat-radio-group>
+    </div>
+    <div>
+        <mat-input-container class="example-full-width">
+            <input matInput placeholder="Search Item " (ngChange)="searchitem()" [(ngModel)]="query" value="">
+        </mat-input-container>
+        <button mat-raised-button color="primary" (click)="searchitem(selectedItemType, query)" [disabled]="!selectedItemType || !query">Search</button>
+    </div>
+    <mat-progress-spinner *ngIf="showLoader" class="example-margin" [color]="color" [mode]="mode" [value]="value">
+    </mat-progress-spinner>
+    <table class="table table-striped table-hover" *ngIf="showRecordStatus">
+        <!-- <thead>
+    <tr >
+      <th>#</th>
+      <th>#</th>
+      <th>ItemId</th>
+      <th>Title</th>
+      <th>Image</th>
+    </tr>
+  </thead> -->
+        <tbody>
+            <tr *ngFor="let item of displayData; let i=index">
+                <td>
+
+                    <mat-checkbox name="checklist" [checked]="facility.indexOf(item.id) !== -1" [value]="item.id" (change)="onChange(item.id, $event.checked)">
+                    </mat-checkbox>
+                </td>
+
+                <td>{{item.title}}</td>
+                <td><img src="{{item.image_url}}" height="80" /></td>
+            </tr>
+            <tr *ngIf="displayData.length==0">
+                <td colspan="5">
+                    No Record Found
+                </td>
+            </tr>
+        </tbody>
+    </table>
+
+</mat-dialog-content>
+<mat-dialog-actions>
+    <button style="margin-right: 7px;" mat-raised-button color="primary" (click)="addItem()" [disabled]="facility.length==0">Add Item</button>
+    <button mat-raised-button color="primary" mat-dialog-close> Close</button>
+</mat-dialog-actions>

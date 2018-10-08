@@ -1,0 +1,49 @@
+<h1 mat-dialog-title class="primary-color">Add New Transaction</h1>
+<mat-dialog-content style="overflow:hidden;" class="accent-color">
+    <div>
+        <mat-form-field style="margin-right:100px; margin-bottom:15px;">
+        <mat-select  placeholder="Select Service" floatPlaceholder="never" [(ngModel)]="selectedService" name="serviceName">
+
+            <mat-option *ngFor="let services of serviceNames" [value]="services">{{ services.service }}</mat-option>
+        </mat-select>
+      </mat-form-field>
+        <mat-form-field style="margin-bottom:15px;">
+        <mat-select  placeholder="Select Source" floatPlaceholder="never" [(ngModel)]="selectedSource" name="sourceName">
+
+            <mat-option [value]="1"> cms </mat-option>
+        </mat-select>
+      </mat-form-field>
+
+        <mat-form-field style="margin-right:100px; margin-bottom:20px;">
+        <mat-select  placeholder="Select Action" floatPlaceholder="never" [(ngModel)]="selectedAction" name="actionName">
+
+            <mat-option *ngFor="let action of actionNames" [value]="action.id">{{ action.distribution_action }}</mat-option>
+        </mat-select>
+      </mat-form-field>
+        <mat-form-field style=" margin-bottom:20px;">
+        <mat-select  placeholder="Select Type" floatPlaceholder="never" [(ngModel)]="selectedType" name="typeName">
+
+            <mat-option [value]="2"> Resources </mat-option>
+        </mat-select>
+      </mat-form-field>
+
+        <input type='file' accept='.txt' (change)='openFile($event)'>
+
+        <span class="label" *ngIf="!browseStatus" class="error_class">Please Browse only txt file</span>
+        <ul *ngIf="!validTextFileStatus" class="error_class">
+            <li>Avoid special character</li>
+            <li>Avoid alphabets</li>
+            <li>Please check the length of resource code</li>
+        </ul>
+        <!-- <span class="label" *ngIf="!validTextFileStatus" class="error_class">1.avoid special character 2.avoid alphabets 3.Please check the length of resource code</span> -->
+
+
+    </div>
+
+
+</mat-dialog-content>
+
+<mat-dialog-actions>
+    <button style="margin-right: 7px;" mat-raised-button color="primary" (click)="addItem(selectedService,selectedSource,selectedAction,selectedType)" [disabled]="browseFileData.length==0 || !selectedService ||!selectedSource || !selectedAction || !selectedType || !validTextFileStatus">Submit</button>
+    <button mat-raised-button color="primary" mat-dialog-close> Close</button>
+</mat-dialog-actions>

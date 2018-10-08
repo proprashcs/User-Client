@@ -1,0 +1,122 @@
+<!-- <h1 mat-dialog-title class="primary-color">View Transaction</h1> -->
+<mat-toolbar>
+    <div class="mat-toolbar-tools">
+        <h2>{{pageTitle}}</h2>
+
+    </div>
+</mat-toolbar>
+<mat-dialog-content  class="accent-color">
+  <mat-progress-spinner *ngIf="showLoader" class="example-margin" [color]="color" [mode]="mode" [value]="value">
+    </mat-progress-spinner>
+      <!-- Add Item Html Start Here -->
+<!--<div *ngIf="showAddItemSection" >
+        <mat-radio-group class="example-radio-group" [(ngModel)]="selectedItematype" (change)="radioOnChange(selectedItematype)">
+            <mat-radio-button class="example-radio-button" [value]="1">
+                Album
+            </mat-radio-button>
+            <mat-radio-button class="example-radio-button" [value]="2">
+                Artist
+            </mat-radio-button>
+
+            <mat-radio-button class="example-radio-button" [value]="3">
+                Playlist
+            </mat-radio-button>
+            <mat-radio-button class="example-radio-button" [value]="4">
+                Genre
+            </mat-radio-button>
+            <mat-radio-button class="example-radio-button" [value]="5">
+                Track
+            </mat-radio-button>
+            <mat-radio-button class="example-radio-button" [value]="6">
+                Radio
+            </mat-radio-button>
+        </mat-radio-group>
+    </div>-->
+    <div *ngIf="showAddItemSection">
+        <mat-input-container class="example-full-width">
+            <input matInput placeholder="Search Item " (ngChange)="searchitem()" [(ngModel)]="query" value="">
+        </mat-input-container>
+        <button mat-raised-button color="primary" (click)="searchItem(query)" [disabled]="!query">Search</button>
+        <button mat-raised-button color="primary" (click)="backPage()">Back</button>
+    </div>
+    <!--<mat-progress-spinner *ngIf="showLoader" class="example-margin" [color]="color" [mode]="mode" [value]="value">
+    </mat-progress-spinner>-->
+    <div *ngIf="showAddItemSection">
+    <table class="table table-striped table-hover" *ngIf="showRecordStatus">
+
+        <tbody>
+            <tr *ngFor="let searchitem of displaySearchData; let j=index">
+                <td>
+
+                    <mat-checkbox name="checklist" [checked]="facility.indexOf(searchitem.id) !== -1" [value]="searchitem.id" (change)="onChange(searchitem.id, $event.checked)">
+                    </mat-checkbox>
+                </td>
+
+                <td>{{searchitem.title}}</td>
+                <td><img src="{{searchitem.image_url}}" height="50" /></td>
+            </tr>
+            <tr *ngIf="displaySearchData.length==0">
+                <td colspan="5">
+                    No Record Found
+                </td>
+            </tr>
+            <tr >
+                <td colspan="5">
+                   <button style="margin-right: 7px;" mat-raised-button color="primary" (click)="addNewItem()" [disabled]="facility.length==0">Add Item</button>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    </div>
+
+
+      <!-- Add Item Html End Here -->
+
+  <!-- Display Data od Album, Artist, Genre Etc-->
+
+      <div *ngIf="showDisplayListItem">
+         <div class="button-row" style="padding-bottom:15px;">
+        <button style="margin-right:15px;" (click)="addItem()" *ngIf="!showLoader" mat-raised-button>Add New Item</button>
+       <!-- <button style="margin-right:15px;" mat-raised-button (click)="displayContainerData(selectedService,selectedSection)" *ngIf="selectedSection">Refresh</button>-->
+        <a style="text-decoration:none;" mat-raised-button (click)="saveDisplayPosition()" *ngIf="showSavePostion" >Save Position</a>
+
+    </div>
+  <table class="table table-hover" *ngIf="!showLoader ">
+    <thead>
+      <tr>
+        <th>#</th>
+        <th>Image</th>
+        <th>Title</th>
+        <th>Item Type</th>
+        <th>Action</th>
+      </tr>
+    </thead>
+
+    <tbody [dragula]='"bag"' [dragulaModel]='displayData' class="containerBody" >
+      <tr *ngFor="let item of displayData; let i=index">
+                    <td>{{i+1}}</td>
+                    <td><img src="{{item.resource_image_url}}" class="avtar" /></td>
+                    <td>{{item.resource_title}}</td>
+                    <td>{{item.itemName}}</td>
+                    <td>
+                        <a style="text-decoration:none;" mat-mini-fab (click)="deleteItem(item)" title="Delete">
+                            <mat-icon>delete</mat-icon>
+                        </a>
+                    </td>
+                </tr>
+                <tr *ngIf="displayData.length==0">
+                    <td colspan="5" style="text-align:center"> No Record Found </td>
+                </tr>
+
+    </tbody>
+  </table>
+
+
+  </div>
+</mat-dialog-content>
+<mat-dialog-actions>
+
+  <!-- <button style="margin-right: 7px;" mat-raised-button color="primary" (click)="addItem()">Submit</button> -->
+  <button mat-raised-button color="primary" mat-dialog-close> Close</button>
+</mat-dialog-actions>

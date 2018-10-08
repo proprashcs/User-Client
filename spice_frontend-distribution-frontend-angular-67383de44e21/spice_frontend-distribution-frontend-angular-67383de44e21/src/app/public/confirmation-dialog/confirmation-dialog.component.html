@@ -1,0 +1,23 @@
+<h1 mat-dialog-title class="primary-color"> Are you sure you want to remove this item?</h1>
+<mat-dialog-content style="overflow:hidden;" class="accent-color">
+    <div class="row">
+        <table style="width:90%">
+            <tr>
+                <td style="width:30%; text-align:center; " ><img src="{{dialogItem.resource_image_url}}" class="avtar" /></td>
+                <td style="width:60%"><span><b> Title:</b>{{dialogItem.resource_title}}</span>  <br>
+                <span><b>Type:</b>{{dialogItem.itemName}}</span></td>
+        <!-- <div class=row> <img src="{{dialogItem.resource_image_url}}" class="avtar" /> </div>
+            <div class="row">
+            <span><b> Title:</b>{{dialogItem.resource_title}}</span>  <br>
+           <span><b>Type:</b>{{dialogItem.itemName}}</span></div> -->
+           </tr>
+           </table>
+    </div>
+
+
+</mat-dialog-content>
+<mat-dialog-actions>
+
+    <button style="margin-right: 7px;" mat-raised-button color="primary" (click)="dialogRef.close(true)">Confirm</button>
+    <button mat-raised-button color="primary" mat-dialog-close> Close</button>
+</mat-dialog-actions>

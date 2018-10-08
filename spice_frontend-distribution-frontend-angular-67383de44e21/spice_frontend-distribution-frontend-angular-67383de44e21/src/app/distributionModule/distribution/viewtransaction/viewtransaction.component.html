@@ -1,0 +1,54 @@
+<!-- <h1 mat-dialog-title class="primary-color">View Transaction</h1> -->
+<mat-toolbar>
+    <div class="mat-toolbar-tools" layout="column">
+        <h2>View Transaction</h2>
+
+      </div>
+      &nbsp;
+      <div class="button-row">
+        <button mat-raised-button color="primary" (click)="downloadLocalData()">Export</button>
+        <button mat-raised-button color="primary" (click)="downloadArtistDetails()">Export Artists</button>
+
+      </div>
+
+</mat-toolbar>
+<mat-dialog-content class="accent-color">
+    <mat-progress-spinner *ngIf="showLoader" class="example-margin" [color]="color" [mode]="mode" [value]="value">
+    </mat-progress-spinner>
+    <table class="table table-hover" *ngIf="!showLoader">
+        <thead>
+            <tr>
+                <th>#</th>
+                <th>TransactionId</th>
+                <th>ResourceCode</th>
+                <th>
+
+                    <mat-select placeholder="Select Status" [(ngModel)]="selectedValue" (ngModelChange)="getFilterdStatusData()" floatPlaceholder="never" multiple name="status ">
+                        <mat-option *ngFor="let status of filtersData" [value]="status.id">
+                            {{status.distribution_transaction_resource_status}}
+                        </mat-option>
+                    </mat-select>
+
+
+                </th>
+                <th>Remarks</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            <tr *ngFor="let item of transactionData; let i = index">
+                <td>{{i+1}}</td>
+                <td>{{item.distribution_transaction_id}}</td>
+                <td>{{item.resource_code}}</td>
+                <td>{{item.distributionTransactionResourceStatuses.distribution_transaction_resource_status}}</td>
+                <td>{{item.remarks}}</td>
+            </tr>
+
+        </tbody>
+    </table>
+</mat-dialog-content>
+<mat-dialog-actions>
+
+    <!-- <button style="margin-right: 7px;" mat-raised-button color="primary" (click)="addItem()">Submit</button> -->
+    <button mat-raised-button color="primary" mat-dialog-close> Close</button>
+</mat-dialog-actions>

@@ -1,0 +1,41 @@
+<h1 mat-dialog-title class="primary-color">{{header}}</h1>
+<form  class="form-inline" [formGroup]="playListFrom" (ngSubmit)="onSubmit(playListFrom)">
+<mat-dialog-content style="overflow:hidden;" class="accent-color">
+
+<div>
+    <mat-form-field style="margin-right:20px;">
+                <mat-select  [(ngModel)]="selectedCountry" placeholder="Select Country" floatPlaceholder="never" formControlName="usageRights" role="option" multiple name="countryName">
+
+                <mat-option *ngFor="let countries of countryNames" [value]="countries.countryId">{{ countries.countryName }}</mat-option>
+            </mat-select>
+            </mat-form-field>
+        <mat-form-field>
+            <mat-select  [(ngModel)]="selectedList" placeholder="Select List Type" floatPlaceholder="never" formControlName="playListType" name="listName">
+                <mat-option *ngFor="let playlist of playListTypes" [value]="playlist.id">{{ playlist.type }}</mat-option>
+
+            </mat-select>
+            </mat-form-field>
+            <mat-input-container class="example-full-width">
+                <input matInput placeholder="Playlist Name" formControlName="name" >
+
+            </mat-input-container>
+
+            <mat-input-container class="example-full-width">
+                <input matInput placeholder="Imagecode" formControlName="imageCode" value="" min="10" max="10">
+            </mat-input-container>
+
+            <mat-input-container class="example-full-width">
+                <textarea matInput formControlName="resourceCode" placeholder="Resource Code" mat-maxlength="150" rows="3" (keyup)="validateResource($event)" mat-select-on-focus></textarea>
+            </mat-input-container>
+
+            <mat-input-container class="example-full-width">
+                <textarea matInput formControlName="description" placeholder="Description" mat-maxlength="150" rows="3" mat-select-on-focus></textarea>
+            </mat-input-container>
+
+    </div>
+</mat-dialog-content>
+<mat-dialog-actions>
+    <button style="margin-right: 7px;" mat-raised-button color="primary"  type="submit">Submit</button>
+    <button mat-raised-button color="primary" mat-dialog-close> Close</button>
+</mat-dialog-actions>
+</form>

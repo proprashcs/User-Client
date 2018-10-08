@@ -1,0 +1,75 @@
+<div class="container-fluid">
+    <div class="row" style="padding-bottom:15px;">
+        <form name="refreshment">
+            <mat-form-field style="margin-right:15px;">
+            <mat-select  placeholder="Select Service" [(ngModel)]="selectedService" (ngModelChange)="getCountry(selectedService)" name="serviceName">
+
+                <mat-option *ngFor="let services of serviceNames" [value]="services.serviceCode">{{ services.service }}</mat-option>
+            </mat-select>
+          </mat-form-field>
+          <mat-form-field style="margin-right:15px;"  *ngIf="showCountry" >
+            <mat-select  placeholder="Select Country" [(ngModel)]="selectedCountry" (ngModelChange)="getSections(selectedService,selectedCountry)" name="countryName">
+
+                <mat-option *ngFor="let countries of countryNames" [value]="countries.countryId">{{ countries.countryName }}</mat-option>
+            </mat-select>
+          </mat-form-field>
+          <mat-form-field  *ngIf="selectedCountry" >
+            <mat-select style="margin-right:15px;" placeholder="Select Service" placeholder="Select Container"  [(ngModel)]="selectedSection" (ngModelChange)="displayContainerData(selectedService,selectedSection)" name="sectionName">
+
+                <mat-option *ngFor="let sections of sectionName" [value]="sections.container_id">{{ sections.section }}</mat-option>
+            </mat-select>
+          </mat-form-field>
+          <!-- </mat-form-field> -->
+
+            <!-- <button type="submit" class="btn btn-success" *ngIf="selectedCountry && selectedSection" (click)="displayContainerData(selectedService,selectedSection)">Display</button> -->
+
+        </form>
+    </div>
+
+    <div class="button-row" style="padding-bottom:15px;">
+        <button style="margin-right:15px;" mat-raised-button (click)="openDialog()" *ngIf="selectedSection">Add New Item</button>
+        <button style="margin-right:15px;" mat-raised-button (click)="displayContainerData(selectedService,selectedSection)" *ngIf="selectedSection">Refresh</button>
+        <a style="text-decoration:none;" mat-raised-button (click)="saveDisplayPosition()" [disabled]="displayData.length==0" *ngIf="showSavePostion && selectedSection">Save Position</a>
+        <!--<a mat-raised-button routerLink="#">Save</a>
+  <a mat-raised-button routerLink=".">Cancle</a>-->
+    </div>
+
+
+    <div class="row " *ngIf="selectedSection">
+
+        <table class="table table-hover">
+            <thead>
+                <tr>
+                    <th>#</th>
+                    <th>Image</th>
+                    <th>Title</th>
+                    <th>Item Type</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+
+            <tbody [dragula]='"another-bag"' [dragulaModel]='displayData' class="containerBody">
+                <tr *ngFor="let item of displayData; let i=index">
+                    <td>{{i+1}}</td>
+                    <td><img src="{{item.resource_image_url}}" class="avtar" /></td>
+                    <td>{{item.resource_title}}</td>
+                    <td>{{item.itemName}}</td>
+                    <td>
+                        <!-- <a style="text-decoration:none; margin-right:7px;" mat-mini-fab (click)="viewItem(item)" title="View" *ngIf="item.item_type_id !=5 && item.item_type_id !=3 " >
+                            <mat-icon>visibility</mat-icon>
+                        </a> -->
+                        <a style="text-decoration:none;" mat-mini-fab (click)="deleteItem(item)" title="Delete">
+                            <mat-icon>delete</mat-icon>
+                        </a>
+                    </td>
+                </tr>
+                <tr *ngIf="displayData.length==0 && sowContainer">
+                    <td colspan="5" style="text-align:center"> No Record Found </td>
+                </tr>
+            </tbody>
+        </table>
+
+    </div>
+
+
+</div>

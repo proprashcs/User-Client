@@ -1,0 +1,36 @@
+/* You can add global styles to this file, and also import other style files */
+
+@import "~@angular/material/prebuilt-themes/indigo-pink.css";
+.mat-sidenav {
+    width: 110px;
+    height: 100%;
+    padding: 20px;
+    background-color: #6bc7cc;
+}
+
+.sidebar-wrapper {
+    width: 200px;
+    height: 100%;
+    padding: 20px;
+    background-color: #6bc7cc;
+}
+
+.example-radio-group {
+    display: inline-flex;
+    flex-direction: row;
+}
+
+.example-radio-button {
+    margin: 15px;
+}
+
+.example-selected-value {
+    margin: 15px 0;
+}
+
+
+/* Error Class */
+
+.error_class {
+    color: red;
+}
