@@ -1,1 +1,2 @@
-./node_modules
+./material-prod/node_modules
+./node-prod/node_modules
