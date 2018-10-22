@@ -1,22 +1,29 @@
 # User-Client
 Mean based market standard application where you can learn :
 
-impliment passport authentication using jwt
-impliment passport authentication using google
-swagger-ui-express
-babel
-joi validation
-morgan middleware
-mongoose paginate
-nodemailer
-impliment lodash
-impliment lazyloading
-impliment material
-impliment Eslint
-Auth guard
-JWT service
-No Auth
-Token Interceptor
+Angular 6,
+
+Node 8.11.6,
+
+Mongo 4.0,
+
+impliment passport authentication using jwt,
+impliment passport authentication using google,
+swagger-ui-express,
+babel,
+joi validation,
+morgan middleware,
+mongoose paginate,
+nodemailer,
+
+impliment lodash,
+impliment lazyloading,
+impliment material,
+impliment Eslint,
+Auth guard,
+JWT service,
+No Auth,
+Token Interceptor,
 
 and many more....
 
