@@ -22,8 +22,8 @@ export default {
             var transporter = nodemailer.createTransport({
                 service: 'Gmail',
                 auth: {
-                    user: 'prashant.shukla@digispice.com',
-                    pass: 'spice@2222'
+                    user: 'prashant.shukla@gmail.com',
+                    pass: 'password'
                 }
             });
 
