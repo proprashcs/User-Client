@@ -1,0 +1,30 @@
+# See http://help.github.com/ignore-files/ for more about ignoring files.
+
+# compiled output
+/Invoice-builder-frontend-auth/dist
+/Invoice-builder-frontend-auth/dist-server
+/Invoice-builder-frontend-auth/tmp
+/Invoice-builder-frontend-auth/out-tsc
+
+# dependencies
+/Invoice-builder-frontend-auth/node_modules
+/node-prod/node_modules
+/node-prod/dist
+
+# IDEs and editors
+/Invoice-builder-frontend-auth/.idea
+/Invoice-builder-frontend-auth/.project
+/Invoice-builder-frontend-auth/.classpath
+/Invoice-builder-frontend-auth/.c9/
+/Invoice-builder-frontend-auth/*.launch
+/Invoice-builder-frontend-auth/.settings/
+/Invoice-builder-frontend-auth/*.sublime-workspace
+
+# IDE - VSCode
+/Invoice-builder-frontend-auth/.vscode/*
+/Invoice-builder-frontend-auth/!.vscode/settings.json
+/Invoice-builder-frontend-auth/!.vscode/tasks.json
+/Invoice-builder-frontend-auth/!.vscode/launch.json
+/Invoice-builder-frontend-auth/!.vscode/extensions.json
+
+
