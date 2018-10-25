@@ -1,2 +1,42 @@
-./material-prod/node_modules
+
 ./node-prod/node_modules
+
+# See http://help.github.com/ignore-files/ for more about ignoring files.
+
+# compiled output
+/material-prod/dist
+/material-prod/tmp
+/material-prod/out-tsc
+
+# dependencies
+/material-prod/node_modules
+
+# IDEs and editors
+/material-prod/.idea
+/material-prod/.project
+/material-prod/.classpath
+/material-prod/.c9/
+/material-prod/*.launch
+/material-prod/.settings/
+/material-prod/*.sublime-workspace
+
+# IDE - VSCode
+.vscode/*
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+
+# misc
+/.sass-cache
+/connect.lock
+/coverage
+/libpeerconnection.log
+npm-debug.log
+yarn-error.log
+testem.log
+/typings
+
+# System Files
+.DS_Store
+Thumbs.db
