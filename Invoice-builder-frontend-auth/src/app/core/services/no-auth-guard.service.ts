@@ -7,7 +7,7 @@ export class NoAuthGuardService implements CanActivate {
   constructor() { }
 
   canActivate() {
-    debugger;
+    // debugger;
     return true;
   }
 

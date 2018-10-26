@@ -6,6 +6,7 @@ import { ClientListingComponent } from '../clients/components/client-listing/cli
 import { InvoiceFormComponent } from '../invoices/components/invoice-form/invoice-form.component';
 import { AuthGuardService } from '../core/services/auth-guard.service';
 import { EditInvoiceResolverService } from '../invoices/services/edit-invoice-resolver.service';
+import { ExperimentComponent } from '../reframe/component/experiment/experiment.component';
 
 const routes: Routes = [
   {
@@ -34,6 +35,12 @@ const routes: Routes = [
       {
         path: 'clients',
         component: ClientListingComponent,
+        canActivateChild: [AuthGuardService]
+      },
+
+      {
+        path: 'reframe',
+        component: ExperimentComponent,
         canActivateChild: [AuthGuardService]
       },
       {

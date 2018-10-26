@@ -15,7 +15,24 @@ export class SideNavComponent implements OnInit {
   },{
     name: 'Clients',
     url: 'clients'
-  }];
+  },
+  {
+    name: 'Reframe',
+    url: 'reframe'
+  },
+  {
+    name: 'TechOps',
+    url: 'clients'
+  },
+  {
+    name: 'ContentOps',
+    url: 'clients'
+  },
+  {
+    name: 'Client Manager',
+    url: 'clients'
+  },
+];
   constructor(zone: NgZone) {
     this.mediaMatcher.addListener((mql) => {
       zone.run(() => this.mediaMatcher = mql)

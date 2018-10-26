@@ -9,6 +9,7 @@ import { InvoicesModule } from '../invoices/invoices.module';
 import { ClientsModule } from '../clients/clients.module';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { TokenInterceptorService } from '../core';
+import { ReframeModule } from '../reframe/reframe.module';
 
 @NgModule({
   imports: [
@@ -16,7 +17,8 @@ import { TokenInterceptorService } from '../core';
     DashboardRoutingModule,
     InvoicesModule,
     ClientsModule,
-    MaterialModule
+    MaterialModule,
+    ReframeModule
   ],
   declarations: [DashboardComponent, SideNavComponent, ToolbarComponent],
   providers: [{

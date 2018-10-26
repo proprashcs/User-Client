@@ -1,0 +1,53 @@
+<!-- <ng-template>
+  <button class="tab-button" 
+          (click)="login()">{{loginText}}</button>
+  <button class="tab-button" 
+          (click)="signUp()">{{signUpText}}</button>
+</ng-template> -->
+<hr>
+<h2>Directive</h2>
+<pre>{{ cardNumberString.value }}</pre> 
+<form #newUserForm="ngForm" (ngSubmit)="onSubmit(newUserForm)">
+
+  <input type="text" placeholder="card number"
+         required maxlength="25"
+         [(ngModel)]="card_number" name="card_number"
+         #cardNumberString="ngModel">
+         <img class="creditCardForm" appCcLogo [cardNumber]="cardNumberString.value" />
+
+</form>
+<hr>
+<h2>ng-template</h2>
+<div class="lessons-list" *ngIf="lessons else loading">
+  <span *ngFor="let lesson of lessons">{{lesson}}<br></span>
+</div>
+<ng-template #loading>
+    <div>loading...</div>
+</ng-template>
+
+<hr>
+<h2>ngTemplateOutlet</h2>
+<ng-container *ngTemplateOutlet="loading">ohhhhhhhh!!!</ng-container>
+<hr>
+
+<h2>Template Context</h2>
+<ng-template #estimateTemplate let-lessonsCounter="estimate">
+  <div> Approximately {{lessonsCounter}} lessons ...</div>
+</ng-template>
+
+<ng-container 
+ *ngTemplateOutlet="estimateTemplate;context:ctx">
+</ng-container>
+
+<hr>
+<h2>Template References</h2>
+<ng-template #defaultTabButtons>
+  <button class="tab-button" (click)="login()">
+    {{loginText}}
+  </button>
+  <button class="tab-button" (click)="signUp()">
+    {{signUpText}}
+  </button>
+</ng-template>
+
+<!-- https://blog.angular-university.io/angular-ng-template-ng-container-ngtemplateoutlet/ -->

@@ -17,7 +17,7 @@ export class EditInvoiceResolverService implements Resolve<Invoice> {
       .pipe(
         take(1),
         map(invoice => {
-          debugger;
+          // debugger;
           if (invoice) {
             return invoice;
           }
